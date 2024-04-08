@@ -54,7 +54,8 @@ def detect_dust_and_double_spending(transactions):
     valid_transactions = []
 
     for tx in transactions:
-        if tx['value'] < DUST_THRESHOLD:
+        # Check if the 'value' key exists in the transaction
+        if 'value' in tx and tx['value'] < DUST_THRESHOLD:
             continue
 
         is_double_spent = False
@@ -84,6 +85,9 @@ def validate_redeem_script(transaction):
     return True
 
 def extract_and_verify_signatures(transaction):
+    if 'txid' not in transaction:
+        return False
+
     for vin in transaction['vin']:
         if 'scriptSig' in vin:
             scriptSig = vin['scriptSig']
