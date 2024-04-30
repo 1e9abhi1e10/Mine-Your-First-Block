@@ -1,3 +1,10 @@
+class Operator:
+    def __init__(self):
+        self.stack = []
+
+class Stack(list):
+    pass
+
 class Transaction:
     def __init__(self, tx_data) -> None:
         self.tx = tx_data
