@@ -121,5 +121,7 @@ The assignment has benefited from a range of resources, including the 'Learn Me 
 - [Learn Me a Bitcoin](https://learnmeabitcoin.com/)
 - [Grokking Bitcoin on GitHub](https://github.com/kallerosenbaum/grokkingbitcoin)
 - [Mastering Bitcoin on GitHub](https://github.com/bitcoinbook/bitcoinbook)
+- [Programming Bitcoin](https://github.com/jimmysong/programmingbitcoin)
+- [Python Blochchain](https://github.com/uberchris2/python-blockchain)
 
 In conclusion, while the 'Mine_your_first_block' assignment is a simplified representation of a blockchain system, it offers a solid foundation for understanding the key components and challenges of blockchain technology. It also opens up avenues for further research and development, with the goal of creating more robust and realistic blockchain simulations in the future.
