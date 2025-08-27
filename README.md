@@ -49,6 +49,21 @@ The resulting `output.txt` will be written to the mounted project directory.
 
 A GitHub Actions workflow builds the Docker image and runs the project on each push to `main`. It also uploads `output.txt` as a build artifact.
 
+## Results
+
+Add your latest grader metrics here after a successful run:
+
+- Score: <fill>
+- Total fees (sats): <fill>
+- Block weight: <fill>
+- Runtime: <fill>
+
+To run a tiny sanity test locally:
+
+```
+python3 tests_smoke.py
+```
+
 ## Evaluation Criteria
 Your submission will be evaluated based on the following criteria:
 
