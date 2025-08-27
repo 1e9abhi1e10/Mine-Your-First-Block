@@ -1,4 +1,5 @@
 import json
+import os
 from mine_block_script import preprocess_transaction, mine_block_with_transactions, calculate_block_weight_and_fee
 
 # Constants
@@ -15,10 +16,25 @@ def main():
     # Read transaction files
     transactions = []
 
-    with open("valid_txn_cache.json", "r") as file:
-        unverified_txns = json.load(file)
+    # Prefer cache when available, otherwise read from mempool directory
+    cache_path = "valid_txn_cache.json"
+    if os.path.exists(cache_path):
+        with open(cache_path, "r") as file:
+            unverified_txns = json.load(file)
+        source_iter = unverified_txns
+    else:
+        filenames = [f for f in os.listdir(MEMPOOL_DIR) if f.endswith('.json')]
+        filenames.sort()
+        source_iter = []
+        for name in filenames:
+            path = os.path.join(MEMPOOL_DIR, name)
+            try:
+                with open(path, "r") as f:
+                    source_iter.append(json.load(f))
+            except Exception:
+                continue
 
-    for tx in unverified_txns[:2150]:
+    for tx in source_iter[:2150]:
         verified_tx = preprocess_transaction(tx)
         transactions.append(verified_tx)
 
