@@ -16,6 +16,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       # Use the mempool folder already present in this repository
+      - name: Prepare grader inputs
+        run: |
+          set -euxo pipefail
+          mkdir -p code-challenge-2024-mempool
+          # Provide mempool directory where the grader expects it
+          if [ -d mempool ]; then
+            rm -rf code-challenge-2024-mempool/mempool || true
+            cp -R mempool code-challenge-2024-mempool/mempool
+          fi
+          # Provide valid-mempool.json from local cache if available
+          if [ -f valid_txn_cache.json ]; then
+            cp valid_txn_cache.json code-challenge-2024-mempool/valid-mempool.json
+          fi
       - name: Validate block
         id: validate-block
         uses: SummerOfBitcoin/code-challenge-2024-grader@v2.8
