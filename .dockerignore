@@ -1,0 +1,16 @@
+.git
+.github
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache
+.mypy_cache
+.DS_Store
+output.txt
+valid_txn_cache.json
+test.sh
+*.log
+*.tmp
+*.swp
+

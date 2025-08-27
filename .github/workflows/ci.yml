@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: false
+          tags: myfirstblock:ci
+
+      - name: Run container
+        run: |
+          docker build -t myfirstblock:ci .
+          docker run --rm myfirstblock:ci
+
+      - name: Upload output.txt artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: output
+          path: output.txt
+

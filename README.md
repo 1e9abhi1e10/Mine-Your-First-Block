@@ -27,6 +27,28 @@ The difficulty target is `0000ffff0000000000000000000000000000000000000000000000
 - Create a file named `run.sh` that contains the command to execute your script. This file should ideally contain a single command like `python main.py` or `node index.js`.
 - Your script should autonomously perform all tasks when `run.sh` is executed, without requiring any manual intervention.
 
+### Run locally
+
+- Python 3.11+ required
+- Execute:
+
+```
+./run.sh
+```
+
+### Run with Docker
+
+```
+docker build -t myfirstblock:latest .
+docker run --rm -v $(pwd):/app myfirstblock:latest
+```
+
+The resulting `output.txt` will be written to the mounted project directory.
+
+### Continuous Integration
+
+A GitHub Actions workflow builds the Docker image and runs the project on each push to `main`. It also uploads `output.txt` as a build artifact.
+
 ## Evaluation Criteria
 Your submission will be evaluated based on the following criteria:
 
