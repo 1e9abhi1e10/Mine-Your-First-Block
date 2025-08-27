@@ -15,11 +15,16 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Download mempool
-        uses: GuillaumeFalourd/clone-github-repo-action@v2.3
+      - name: Checkout public mempool repo
+        uses: actions/checkout@v4
         with:
-          owner: 'SummerOfBitcoin'
-          repository: 'code-challenge-2024-mempool'
+          repository: SummerOfBitcoin/code-challenge-2024-mempool
+          path: external-mempool
+          ref: main
+      - name: Prepare mempool folder
+        run: |
+          rm -rf mempool
+          cp -R external-mempool/mempool ./mempool
       - name: Validate block
         id: validate-block
         uses: SummerOfBitcoin/code-challenge-2024-grader@v2.8
