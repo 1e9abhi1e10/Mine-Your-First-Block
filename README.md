@@ -1,4 +1,4 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/bWLxfecg)
+
 # Summer of Bitcoin 2024: Mine your first block
 
 ## Overview
@@ -51,9 +51,8 @@ A GitHub Actions workflow builds the Docker image and runs the project on each p
 
 ## Results
 
-Add your latest grader metrics here after a successful run:
+Add your latest run metrics here after a successful run:
 
-- Score: <fill>
 - Total fees (sats): <fill>
 - Block weight: <fill>
 - Runtime: <fill>
@@ -64,41 +63,3 @@ To run a tiny sanity test locally:
 python3 tests_smoke.py
 ```
 
-## Evaluation Criteria
-Your submission will be evaluated based on the following criteria:
-
-- **Score**: Your code output will be scored bases on the fee collected and the amount of available block space utilised. **You must score at least 60 points to pass the challenge.**
-- **Correctness**: The `output.txt` file must be correctly formatted in the manner described above.
-- **Code Quality**: Your code should be well-organized, commented, and follow best practices.
-- **Efficiency**: Your solution should process transactions and mine the block efficiently.
-
-## Document your work
-
-Apart from the code, you must also publish a `SOLUTION.md` file explaining your solution in the following format:
-- **Design Approach:** Describe the approach you took to design your block construction program, explain all the key concepts of creating a valid block.
-- **Implementation Details:** Provide pseudo code of your implementation, including sequence of logic, algorithms and variables used etc.
-- **Results and Performance:** Present the results of your solution, and analyze the efficiency of your solution.
-- **Conclusion:** Discuss any insights gained from solving the problem, and outline potential areas for future improvement or research. Include a list of references or resources consulted during the problem-solving process.
-
-## What NOT to Do
-
-In this challenge, it's crucial to understand and adhere to the following restrictions. These are put in place to ensure that you engage with the core concepts of bitcoin and apply your problem-solving skills to implement the solution from first principles.
-
-- **Do Not Use Bitcoin Libraries for Transaction Validation:** You must not use any Bitcoin-specific libraries or frameworks that automate transaction validation processes. The intent of this challenge is for you to understand and implement the validation logic manually.
-- **Permissible Libraries:** The use of standard cryptographic libraries, such as secp256k1 for elliptic curve cryptography, and standard hashing libraries (e.g., for SHA-256) is allowed and encouraged. These libraries are essential for implementing the cryptographic underpinnings of bitcoin without reinventing the wheel.
- - **Implement the Mining Algorithm Yourself:** You are required to implement the mining algorithm on your own. This includes creating a way to correctly form a block header, calculate the hash, and meet the challenge of finding a hash below a certain target.
-
-### Plagiarism Policy:
-Our plagiarism detection checker thoroughly identifies any instances of copying or cheating. Participants are required to publish their solutions in the designated repository, which is private and accessible only to the individual and the administrator. Solutions should not be shared publicly or with peers. In case of plagiarism, both parties involved will be directly disqualified to maintain fairness and integrity.
-
-### AI Usage Disclaimer:
-You may use AI tools like ChatGPT to gather information and explore alternative approaches, but avoid relying solely on AI for complete solutions. Verify and validate any insights obtained and maintain a balance between AI assistance and independent problem-solving.
-
-## Why These Restrictions?
-These restrictions are designed to deepen your understanding of bitcoin technicals.
-By completing this assignment, you will gain hands-on experience with the technology that make bitcoin secure and trustless.
-Remember, the goal of this challenge is not just to produce a working solution but to engage critically with the fundamental components of bitcoin. This is an opportunity to showcase your problem-solving skills and your ability to implement complex algorithms from scratch.
-
-## Additional Information
-- This challenge is designed to test your understanding of bitcoin fundamentals, including transaction validation and block mining processes.
-- While the challenge focuses on the simulation of these processes, you are encouraged to implement your solution in a way that demonstrates depth of understanding and creativity.
