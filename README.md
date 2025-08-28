@@ -1,31 +1,30 @@
 
-# Summer of Bitcoin 2024: Mine your first block
+# Mine Your First Block
 
 ## Overview
-In this challenge, you are tasked with the simulation of mining process of a block, which includes validating and including transactions from a given set of transactions.
-The repository contains a folder `mempool` which contains JSON files. 
-These files represent individual transactions, some of which may be invalid. Your goal is to successfully mine a block by including only the valid transactions, following the specific requirements outlined below.
+This project simulates constructing and mining a Bitcoin-like block from a mempool of JSON transactions, producing an `output.txt` in the expected format. It includes basic preprocessing, Merkle root and witness commitment calculation, and a simple PoW loop under a fixed difficulty target.
 
 ## Objective
-Your primary objective is to write a script that processes a series of transactions, validates them, and then mines them into a block. The output of your script should be a file named `output.txt` that follows a specific format.
+Process transactions from `mempool/`, assemble a valid block template, and mine a header meeting the target. The script writes an `output.txt` that downstream graders/tools can verify.
 
-## Requirements
-### Input
-- You are provided with a folder named `mempool` containing several JSON files. Each file represents a transaction that includes all necessary information for validation.
-- Among these transactions, some are invalid. Your script should be able to discern valid transactions from invalid ones.
+## Features
+- Reads transactions from `mempool/` (or `valid_txn_cache.json` if present)
+- Preprocesses transactions (preserves given `txid` and computes `wtxid`)
+- Builds witness commitment and Merkle root
+- Mines a header under a fixed target
+- Outputs `output.txt` with header, coinbase, and txids
 
-### Output
-Your script must generate an output file named `output.txt` with the following structure:
-- First line: The block header.
-- Second line: The serialized coinbase transaction.
-- Following lines: The transaction IDs (txids) of the transactions mined in the block, in order. The first txid should be that of the coinbase transaction
+## Output format
+`output.txt` contains:
+- First line: Block header (hex)
+- Second line: Serialized coinbase transaction (hex)
+- Following lines: Transaction IDs (txids), starting with the coinbase txid
 
 ### Difficulty Target
 The difficulty target is `0000ffff00000000000000000000000000000000000000000000000000000000`. This is the value that the block hash must be less than for the block to be successfully mined.
 
 ## Execution
-- Create a file named `run.sh` that contains the command to execute your script. This file should ideally contain a single command like `python main.py` or `node index.js`.
-- Your script should autonomously perform all tasks when `run.sh` is executed, without requiring any manual intervention.
+`run.sh` runs the end-to-end pipeline without manual input.
 
 ### Run locally
 
@@ -46,20 +45,25 @@ docker run --rm -v $(pwd):/app myfirstblock:latest
 The resulting `output.txt` will be written to the mounted project directory.
 
 ### Continuous Integration
+GitHub Actions workflow `CI` builds the Docker image and runs the project on each push to `main`. It uploads `output.txt` as a build artifact.
 
-A GitHub Actions workflow builds the Docker image and runs the project on each push to `main`. It also uploads `output.txt` as a build artifact.
+Note: The former classroom autograding workflow is disabled in this repository.
 
 ## Results
 
-Add your latest run metrics here after a successful run:
+Add your latest run metrics here after a successful run (example values shown below are placeholders):
 
 - Total fees (sats): <fill>
 - Block weight: <fill>
 - Runtime: <fill>
 
-To run a tiny sanity test locally:
+## Project structure
 
-```
-python3 tests_smoke.py
-```
-
+- `main.py`: Entry point; loads transactions and orchestrates mining
+- `mine_block_script.py`: Core logic (preprocessing, merkle, witness, header, PoW)
+- `_utils/hash_utils.py`: Hash utilities (double SHA256)
+- `_utils/transaction_utils.py`: Serialization helpers
+- `mempool/`: JSON transaction files
+- `run.sh`: One-shot execution script
+- `Dockerfile`: Container image for reproducible runs
+- `.github/workflows/ci.yml`: CI build-and-run pipeline
